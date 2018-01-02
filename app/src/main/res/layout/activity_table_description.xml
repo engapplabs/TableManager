@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.abuarquemf.tablemanager.activities.TableDescriptionActivity">
 
     <TextView
@@ -42,8 +42,12 @@
 
     <!-- BOTTOM NAV VIEW TO BACK, NEW ORDER, CLOSE -->
     <android.support.design.widget.BottomNavigationView
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@drawable/nav_item_color_state"
+        app:itemTextColor="@drawable/nav_item_color_state"
         android:layout_width="match_parent"
         android:id="@+id/bottomOnTables"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_navigation_menu"/>
 </RelativeLayout>

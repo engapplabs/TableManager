@@ -28,6 +28,12 @@ class TableDescriptionActivity : AppCompatActivity() {
 
         ordersList.adapter = OrderAdapter(this, orders)
 
+        bottomOnTables.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.back -> finish()
+            }
+            true
+        }
 
     }
 }
