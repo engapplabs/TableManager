@@ -2,6 +2,7 @@ package com.abuarquemf.tablemanager.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.abuarquemf.tablemanager.R
 import com.abuarquemf.tablemanager.adapters.OrderAdapter
 import com.abuarquemf.tablemanager.entities.Order
@@ -31,9 +32,18 @@ class TableDescriptionActivity : AppCompatActivity() {
         bottomOnTables.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.back -> finish()
+                R.id.addOrder -> addOrderHandler()
+                R.id.checkTable -> checkTableHandler()
             }
             true
         }
+    }
 
+    private fun addOrderHandler() {
+        Toast.makeText(this, "add", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkTableHandler() {
+        Toast.makeText(this, "check", Toast.LENGTH_SHORT).show()
     }
 }
