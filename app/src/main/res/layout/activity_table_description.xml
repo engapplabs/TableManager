@@ -40,6 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <!-- BOTTOM NAV VIEW TO CLOSE, NEW ORDER,... -->
+    <!-- BOTTOM NAV VIEW TO BACK, NEW ORDER, CLOSE -->
 
 </RelativeLayout>

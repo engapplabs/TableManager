@@ -20,7 +20,9 @@ class TableDescriptionActivity : AppCompatActivity() {
         else
             tableOpened.text = "Table closed"
 
-        //tablePrice.text = String.format("Total price: R$ %.2lf", givenTable.totalPrice)
+        tablePrice.text = "Total price: R$ " + givenTable.totalPrice
+
+
 
     }
 }
