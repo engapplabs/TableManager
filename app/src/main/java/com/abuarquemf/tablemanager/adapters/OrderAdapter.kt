@@ -9,30 +9,24 @@ import android.widget.BaseAdapter
 import android.widget.Spinner
 import com.abuarquemf.tablemanager.R
 import com.abuarquemf.tablemanager.entities.Order
+import com.abuarquemf.tablemanager.entities.Product
 
 /**
  * Created by animal505 on 29/12/17.
  */
 
+//TODO bota logo pra pegar os produtos
 class OrderAdapter(private val context: Context,
-                   private val orders: ArrayList<Order>) : BaseAdapter() {
+                   private val products: ArrayList<Product>) : BaseAdapter() {
 
-    override fun getCount() = this.orders.size
+    override fun getCount() = this.products.size
 
-
-    override fun getItem(i: Int) = this.orders[i]
+    override fun getItem(i: Int) = this.products[i]
 
     override fun getItemId(i: Int) = i.toLong()
 
     override fun getView(i: Int, view: View, viewGroup: ViewGroup): View {
-        var guiView = view
-        if(guiView == null)
-            guiView = LayoutInflater.from(context).inflate(R.layout.order_layout_description, null)
-        val order = orders.get(i)
-        val orderDescriptorSpinner = guiView.findViewById<Spinner>(R.id.productSpinner)
-        val simpleAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, arrayListOf("oi", "vaca"))
-        orderDescriptorSpinner.adapter = simpleAdapter
-        return guiView!!
+       return view
     }
 }
 

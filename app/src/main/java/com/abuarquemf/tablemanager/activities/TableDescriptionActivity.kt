@@ -29,16 +29,20 @@ class TableDescriptionActivity : AppCompatActivity() {
         productsMap.put(1, Product(1, "Cafe", 3.5))
         productsMap.put(2, Product(2, "Cheeseburger", 15.0))
 
+
+        //getting sent table from main activity
         val givenTable = intent.getParcelableExtra<Table>(MainActivity.TABLE_PASS)
 
+        //setting table id
         tableId.text = String.format("Table %d", givenTable.getTableId())
+        //setting if table is open or not
         if(givenTable.isBillOpen)
             tableOpened.text = "Table opened"
         else
             tableOpened.text = "Table closed"
-
+        //setting totalprice
         tablePrice.text = "Total price: R$ " + givenTable.totalPrice
-
+        //adding listener to bottom nav view
         bottomOnTables.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.back -> finish()
@@ -58,15 +62,19 @@ class TableDescriptionActivity : AppCompatActivity() {
         val onAddProductLayout = LayoutInflater.from(this)
                 .inflate(R.layout.on_adding_product, null)
 
-        val givenProductName = onAddProductLayout.findViewById<EditText>(R.id.givenProductIdEditText)
+        val givenProductName = onAddProductLayout
+                .findViewById<EditText>(R.id.givenProductIdEditText)
 
         var products = ArrayList<Product>()
         var productsAdapter = ProductsAdapter(this, products)
 
-        val productsListView = onAddProductLayout.findViewById<ListView>(R.id.currentOrdersListView)
+        val productsListView = onAddProductLayout
+                .findViewById<ListView>(R.id.currentOrdersListView)
         productsListView.adapter = productsAdapter
 
-        val addProductButton = onAddProductLayout.findViewById<ImageButton>(R.id.addProduct)
+        val addProductButton = onAddProductLayout
+                .findViewById<ImageButton>(R.id.addProduct)
+
         addProductButton.setOnClickListener({
             val givenProductInfo = givenProductName.text.toString()
             var validInput = true
@@ -74,7 +82,10 @@ class TableDescriptionActivity : AppCompatActivity() {
                 productId = givenProductInfo.toInt()
             } catch (e: Exception) {
                 validInput = false
-                Toast.makeText(this, "Type only numbers", Toast.LENGTH_SHORT).show()
+                if(givenProductInfo == "")
+                    Toast.makeText(this, "Type product id", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(this, "Type only numbers", Toast.LENGTH_SHORT).show()
             }
             if(validInput) {
                 products.add(productsMap[productId]!!)
@@ -91,7 +102,6 @@ class TableDescriptionActivity : AppCompatActivity() {
         })
 
         onAddProductGUI.setPositiveButton("Ok", {dialogInterface, _ ->
-            //TODO ADD GIVEN PRODUCTS
             dialogInterface.dismiss()
         })
 
