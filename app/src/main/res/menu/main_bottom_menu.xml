@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/addOrder"
+        android:title="New"
+        android:icon="@drawable/ic_add_table"/>
+
+    <item
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/t1"
+        android:title="t1"
+        android:icon="@drawable/ic_check_table"/>
+
+    <item
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/t2"
+        android:title="t2"
+        android:icon="@drawable/ic_check_table"/>
+</menu>

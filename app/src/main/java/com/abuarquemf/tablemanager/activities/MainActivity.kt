@@ -19,15 +19,18 @@ class MainActivity : AppCompatActivity() {
         val TABLE_PASS = "-505"
     }
 
+    private var tables = ArrayList<Table>()
+    private var tablesAdapter: TableAdapter? = null
+
     //TODO HANDLE STATE KEEP
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var tables = ArrayList<Table>()
+        tables = ArrayList<Table>()
 
-        val tablesAdapter = TableAdapter(this, tables)
+        tablesAdapter = TableAdapter(this, tables)
 
         tablesList.adapter = tablesAdapter
 
@@ -38,40 +41,46 @@ class MainActivity : AppCompatActivity() {
             startActivity(tableDescribeActivity)
         }
 
-        addTable.setOnClickListener({
-            val addTableAlert = AlertDialog.Builder(this)
-            addTableAlert.setTitle("Add Table")
-            addTableAlert.setIcon(R.drawable.ic_add_table)
+        mainBottom.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.addOrder -> addTableHandler()
+            }
+            true
+        }
+    }
 
-            val onAddingTableGUI = LayoutInflater.from(this).inflate(R.layout.on_adding_table, null)
-            val idInputEdit = onAddingTableGUI.findViewById<EditText>(R.id.tableIdEditText)
+    private fun addTableHandler() {
+        val addTableAlert = AlertDialog.Builder(this)
+        addTableAlert.setTitle("Add Table")
+        addTableAlert.setIcon(R.drawable.ic_add_table)
 
-            addTableAlert.setView(onAddingTableGUI)
+        val onAddingTableGUI = LayoutInflater.from(this).inflate(R.layout.on_adding_table, null)
+        val idInputEdit = onAddingTableGUI.findViewById<EditText>(R.id.tableIdEditText)
 
-            addTableAlert.setNegativeButton("Cancel",  { dialogInterface, _ ->
-                dialogInterface.dismiss()
-            })
+        addTableAlert.setView(onAddingTableGUI)
 
-            addTableAlert.setPositiveButton("Add", {dialogInterface, _ ->
-                val givenTableId = idInputEdit.text.toString()
-                var validInput = true
-                var tableId: Int = -505
-                try {
-                    tableId = givenTableId.toInt()
-                } catch (e: Exception) {
-                    Toast.makeText(this, "Type only numbers", Toast.LENGTH_SHORT).show()
-                    validInput = false
-                }
-
-                if(validInput) {
-                    tables.add(Table(tableId))
-                    tablesAdapter.notifyDataSetChanged()
-                }
-                dialogInterface.dismiss()
-            })
-
-            addTableAlert.show()
-
+        addTableAlert.setNegativeButton("Cancel",  { dialogInterface, _ ->
+            dialogInterface.dismiss()
         })
+
+        addTableAlert.setPositiveButton("Add", {dialogInterface, _ ->
+            val givenTableId = idInputEdit.text.toString()
+            var validInput = true
+            var tableId: Int = -505
+            try {
+                tableId = givenTableId.toInt()
+            } catch (e: Exception) {
+                Toast.makeText(this, "Type only numbers", Toast.LENGTH_SHORT).show()
+                validInput = false
+            }
+
+            if(validInput) {
+                tables.add(Table(tableId))
+                tablesAdapter!!.notifyDataSetChanged()
+            }
+            dialogInterface.dismiss()
+        })
+
+        addTableAlert.show()
     }
 }
