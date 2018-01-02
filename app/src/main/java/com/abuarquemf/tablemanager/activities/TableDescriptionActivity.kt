@@ -23,6 +23,8 @@ class TableDescriptionActivity : AppCompatActivity() {
 
         ///////////MOCK/////////////////////////////////////
         productsMap.put(505, Product(505, "Coca", 5.0))
+        productsMap.put(1, Product(1, "Cafe", 3.5))
+        productsMap.put(2, Product(2, "Cheeseburger", 15.0))
 
         val givenTable = intent.getParcelableExtra<Table>(MainActivity.TABLE_PASS)
 
@@ -78,6 +80,7 @@ class TableDescriptionActivity : AppCompatActivity() {
             if(validInput) {
                 products.add(productsMap[productId]!!)
                 productsAdapter.notifyDataSetChanged()
+                givenProductName.setText("")
             }
         })
 
