@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         var tables = ArrayList<Table>()
 
-        tablesList.adapter = TableAdapter(this, tables)
+        val tablesAdapter = TableAdapter(this, tables)
+
+        tablesList.adapter = tablesAdapter
 
         tablesList.setOnItemClickListener { parent, view, position, id ->
             val table = tablesList.adapter.getItem(position) as Table
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                 if(validInput) {
                     tables.add(Table(tableId))
-                    tablesList.adapter = TableAdapter(this, tables)
+                    tablesAdapter.notifyDataSetChanged()
                 }
                 dialogInterface.dismiss()
             })
