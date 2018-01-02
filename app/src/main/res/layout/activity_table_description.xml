@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    tools:context="com.abuarquemf.tablemanager.activities.TableDescriptionActivity">
+
+    <TextView
+        android:id="@+id/tableId"
+        android:textSize="30sp"
+        android:layout_margin="8dp"
+        tools:text="Table 505"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tableOpened"
+        android:layout_below="@+id/tableId"
+        android:textSize="25sp"
+        android:layout_margin="8dp"
+        tools:text="Table opened"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Maybe not idea put it-->
+    <TextView
+        android:id="@+id/tablePrice"
+        tools:text="Total: R$ 505,00"
+        android:layout_below="@+id/tableOpened"
+        android:textSize="25sp"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:layout_below="@+id/tablePrice"
+        android:id="@+id/ordersList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- BOTTOM NAV VIEW TO CLOSE, NEW ORDER,... -->
+
+</RelativeLayout>
