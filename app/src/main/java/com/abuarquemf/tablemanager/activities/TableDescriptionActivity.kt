@@ -11,11 +11,14 @@ import com.abuarquemf.tablemanager.adapters.ProductsAdapter
 import com.abuarquemf.tablemanager.entities.Order
 import com.abuarquemf.tablemanager.entities.Product
 import com.abuarquemf.tablemanager.entities.Table
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_table_description.*
 
 class TableDescriptionActivity : AppCompatActivity() {
 
     private var productsMap = HashMap<Int, Product>()
+
+    private var orderCounter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +38,6 @@ class TableDescriptionActivity : AppCompatActivity() {
             tableOpened.text = "Table closed"
 
         tablePrice.text = "Total price: R$ " + givenTable.totalPrice
-
-        val orders = ArrayList<Order>()
-
-        ordersList.adapter = OrderAdapter(this, orders)
 
         bottomOnTables.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {

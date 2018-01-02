@@ -7,14 +7,4 @@ import java.util.ArrayList
  */
 
 // refact to abstract factory method
-class Order(val orderId: Int) {
-
-    var product: String? = null // bottle of water, candle of coke...
-    var price: Double = 0.toDouble()
-    var orders: List<Product>? = null
-
-    constructor(orderId: Int, price: Double): this(orderId) {
-        this.orders = ArrayList()
-        this.price = price
-    }
-}
+data class Order(val orderId: Int, val price: Double, val orders: List<Product>)
