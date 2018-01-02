@@ -3,6 +3,8 @@ package com.abuarquemf.tablemanager.activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.abuarquemf.tablemanager.R
+import com.abuarquemf.tablemanager.adapters.OrderAdapter
+import com.abuarquemf.tablemanager.entities.Order
 import com.abuarquemf.tablemanager.entities.Table
 import kotlinx.android.synthetic.main.activity_table_description.*
 
@@ -22,6 +24,9 @@ class TableDescriptionActivity : AppCompatActivity() {
 
         tablePrice.text = "Total price: R$ " + givenTable.totalPrice
 
+        val orders = ArrayList<Order>()
+
+        ordersList.adapter = OrderAdapter(this, orders)
 
 
     }

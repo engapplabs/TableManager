@@ -41,5 +41,9 @@
         android:layout_height="wrap_content"/>
 
     <!-- BOTTOM NAV VIEW TO BACK, NEW ORDER, CLOSE -->
-
+    <android.support.design.widget.BottomNavigationView
+        android:layout_width="match_parent"
+        android:id="@+id/bottomOnTables"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>
