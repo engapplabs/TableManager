@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<Spinner xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <TextView
-        android:id="@+id/orderNumber"
-        android:textSize="20sp"
-        android:gravity="center"
-        tools:text="Order 1"
-        android:layout_margin="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:spinnerMode="dialog"
+    android:id="@+id/productSpinner"
+    xmlns:tools="http://schemas.android.com/tools"/>

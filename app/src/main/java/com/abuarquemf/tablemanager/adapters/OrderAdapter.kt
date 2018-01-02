@@ -25,14 +25,7 @@ class OrderAdapter(private val context: Context,
     override fun getItemId(i: Int) = i.toLong()
 
     override fun getView(i: Int, view: View, viewGroup: ViewGroup): View {
-        var guiView: View? = view
-        if (guiView == null)
-            guiView = LayoutInflater.from(context).inflate(R.layout.order_layout_description, null)
-
-        val currentOrder = getItem(i)
-        val currentTableId = guiView!!.findViewById<TextView>(R.id.orderNumber)
-        currentTableId.text = "Order " + currentOrder.orderId
-        return guiView
+        return view
     }
 }
 

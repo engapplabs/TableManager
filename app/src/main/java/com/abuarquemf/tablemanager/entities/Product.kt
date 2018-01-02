@@ -3,16 +3,15 @@ package com.abuarquemf.tablemanager.entities
 /**
  * Created by animal505 on 29/12/17.
  */
-class Product {
-
-    private var name: String? = null
-    private var price: Double = 0.0
+class Product(private var id: Int, private var name: String, private var price: Double) {
 
     fun setName(name: String) {
         this.name = name
     }
 
     fun getName() = name!!
+
+    fun getId() = id
 
     fun getPrice() = price
 
