@@ -11,7 +11,6 @@ import com.abuarquemf.tablemanager.adapters.ProductsAdapter
 import com.abuarquemf.tablemanager.entities.Order
 import com.abuarquemf.tablemanager.entities.Product
 import com.abuarquemf.tablemanager.entities.Table
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_table_description.*
 
 class TableDescriptionActivity : AppCompatActivity() {
@@ -20,15 +19,21 @@ class TableDescriptionActivity : AppCompatActivity() {
 
     private var orderCounter = 1
 
+    private val orders = ArrayList<Order>()
+    private var ordersAdapters: OrderAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table_description)
 
-        ///////////MOCK/////////////////////////////////////
-        productsMap.put(505, Product(505, "Coca", 5.0))
-        productsMap.put(1, Product(1, "Cafe", 3.5))
-        productsMap.put(2, Product(2, "Cheeseburger", 15.0))
+        ordersAdapters = OrderAdapter(this, orders)
+        ordersList.adapter = ordersAdapters
 
+        ///////////MOCK/////////////////////////////////////////////////////
+        productsMap.put(505, Product(505, "Coca", 5.0))     //
+        productsMap.put(1, Product(1, "Cafe", 3.5))         //
+        productsMap.put(2, Product(2, "Cheeseburger", 15.0))//
+        ////////////////////////////////////////////////////////////////////
 
         //getting sent table from main activity
         val givenTable = intent.getParcelableExtra<Table>(MainActivity.TABLE_PASS)
@@ -90,8 +95,8 @@ class TableDescriptionActivity : AppCompatActivity() {
             if(validInput) {
                 products.add(productsMap[productId]!!)
                 productsAdapter.notifyDataSetChanged()
-                givenProductName.setText("")
             }
+            givenProductName.setText("")
         })
 
         //setting up layout to GUI
@@ -102,6 +107,9 @@ class TableDescriptionActivity : AppCompatActivity() {
         })
 
         onAddProductGUI.setPositiveButton("Ok", {dialogInterface, _ ->
+            val currentOrder = Order(orderCounter++, products.sumByDouble { e -> e.getPrice() }, products)
+            orders.add(currentOrder)
+            ordersAdapters!!.notifyDataSetChanged()
             dialogInterface.dismiss()
         })
 
