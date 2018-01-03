@@ -21,6 +21,7 @@ class TableDescriptionActivity : AppCompatActivity() {
 
     private val orders = ArrayList<Order>()
     private var ordersAdapters: OrderAdapter? = null
+    private var givenTable: Table? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,17 +37,17 @@ class TableDescriptionActivity : AppCompatActivity() {
         ////////////////////////////////////////////////////////////////////
 
         //getting sent table from main activity
-        val givenTable = intent.getParcelableExtra<Table>(MainActivity.TABLE_PASS)
+        givenTable = intent.getParcelableExtra<Table>(MainActivity.TABLE_PASS)
 
         //setting table id
-        tableId.text = String.format("Table %d", givenTable.getTableId())
+        tableId.text = String.format("Table %d", givenTable!!.getTableId())
         //setting if table is open or not
-        if(givenTable.isBillOpen)
+        if(givenTable!!.isBillOpen)
             tableOpened.text = "Table opened"
         else
             tableOpened.text = "Table closed"
         //setting totalprice
-        tablePrice.text = "Total price: R$ " + givenTable.totalPrice
+        tablePrice.text = "Total price: R$ " + givenTable!!.totalPrice
         //adding listener to bottom nav view
         bottomOnTables.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
@@ -108,8 +109,10 @@ class TableDescriptionActivity : AppCompatActivity() {
 
         onAddProductGUI.setPositiveButton("Ok", {dialogInterface, _ ->
             val currentOrder = Order(orderCounter++, products.sumByDouble { e -> e.getPrice() }, products)
+            givenTable!!.addOrder(currentOrder)
             orders.add(currentOrder)
             ordersAdapters!!.notifyDataSetChanged()
+            tablePrice.text = "Total price: R$ " + givenTable!!.totalPrice
             dialogInterface.dismiss()
         })
 

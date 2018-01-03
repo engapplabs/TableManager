@@ -9,16 +9,15 @@ import kotlin.collections.ArrayList
  */
 
 data class Order(val orderId: Int, val price: Double, val orders: ArrayList<Product>): Parcelable {
-
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readDouble(),
-            TODO("orders")) {
-    }
+            parcel.createTypedArrayList(Product.CREATOR))
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(orderId)
         parcel.writeDouble(price)
+        parcel.writeList(orders)
     }
 
     override fun describeContents(): Int {
